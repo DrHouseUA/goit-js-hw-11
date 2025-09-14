@@ -8,7 +8,7 @@ import {
 } from '../src/js/render-functions.js';
 
 const formRefEl = document.querySelector('.form');
-const ulEl = document.querySelector('.js-gallery');
+const ulEl = document.querySelector('.gallery');
 
 formRefEl.addEventListener('submit', onSubmit);
 
