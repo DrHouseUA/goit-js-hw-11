@@ -16,31 +16,22 @@ function onSubmit(event) {
   event.preventDefault();
   showLoader();
   clearGallery();
-  const inputSearchWord =
-    event.currentTarget.elements['search-text'].value.trim();
+  const searchQuery = event.currentTarget.elements['search-text'].value.trim();
 
-  if (inputSearchWord.length === 0) {
+  if (searchQuery.length === 0) {
     hideLoader();
     formRefEl.reset();
-    console.log('Work in if');
     return iziToast.error({
       title: 'Error',
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
+      message: 'Sorry, you input empty query. Please try again!',
       position: 'topRight',
     });
-    return;
   }
 
-  getImagesByQuery(inputSearchWord)
+  getImagesByQuery(searchQuery)
     .then(images => {
       if (!images || images.length === 0) {
-        iziToast.error({
-          title: 'Error',
-          message:
-            'Sorry, there are no images matching your search query. Please try again!',
-          position: 'topRight',
-        });
+        throw new Error('Empty or invalid query');
       } else {
         createGallery(images);
       }
