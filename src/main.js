@@ -4,11 +4,11 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
-  gallery,
 } from '../src/js/render-functions.js';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const formRefEl = document.querySelector('.form');
-const ulEl = document.querySelector('.gallery');
 
 formRefEl.addEventListener('submit', onSubmit);
 
@@ -19,10 +19,31 @@ function onSubmit(event) {
   const inputSearchWord =
     event.currentTarget.elements['search-text'].value.trim();
 
+  if (inputSearchWord.length === 0) {
+    hideLoader();
+    formRefEl.reset();
+    console.log('Work in if');
+    return iziToast.error({
+      title: 'Error',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+      position: 'topRight',
+    });
+    return;
+  }
+
   getImagesByQuery(inputSearchWord)
-    .then(response => {
-      ulEl.insertAdjacentHTML('beforeend', createGallery(response));
-      gallery.refresh();
+    .then(images => {
+      if (!images || images.length === 0) {
+        iziToast.error({
+          title: 'Error',
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          position: 'topRight',
+        });
+      } else {
+        createGallery(images);
+      }
     })
     .catch(error => console.log(error))
     .finally(() => {

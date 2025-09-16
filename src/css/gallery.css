@@ -8,20 +8,21 @@
   margin: 0 auto;
 }
 
-.js-gallery {
-  margin-top: 20px;
+.gallery {
+  width: 1128px;
+  margin: 20px auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 24px;
 }
 
-.js-gallery li {
+.gallery li {
   width: 360px;
   height: 200px;
 }
 
-.js-gallery li ul {
+.gallery li ul {
   display: flex;
   padding: 4px 20px;
   justify-content: space-between;
@@ -55,7 +56,7 @@ span {
 
 .loader {
   position: relative;
-  width: 275px;
+  width: 70px;
   height: 100px;
   background-repeat: no-repeat;
   background-image: linear-gradient(#ddd 50px, transparent 0),

@@ -33,11 +33,9 @@ button {
 
 input {
   width: 272px;
-  height: 40px;
+
   border-radius: 4px;
-  width: 272px;
-  height: 40px;
-  padding-left: 16px;
+  padding: 8px 16px;
 
   &::placeholder {
     font-family: 'Montserrat', sans-serif;
@@ -53,10 +51,8 @@ input {
   }
 
   &:focus {
-    border: 1px solid #4e75ff;
     border-radius: 4px;
     width: 272px;
-    height: 40px;
     outline-color: #4e75ff;
   }
 }

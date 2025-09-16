@@ -3,7 +3,7 @@ import SimpleLightbox from 'simplelightbox';
 // Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export const gallery = new SimpleLightbox('.js-gallery a', {
+export const gallery = new SimpleLightbox('.gallery a', {
   /* options */
 });
 
@@ -37,7 +37,8 @@ export function createGallery(images) {
       }
     )
     .join('');
-  return markup;
+  ulEl.insertAdjacentHTML('beforeend', markup);
+  gallery.refresh();
 }
 
 export function clearGallery() {
